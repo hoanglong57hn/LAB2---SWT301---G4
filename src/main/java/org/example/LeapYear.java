@@ -1,69 +1,83 @@
 package org.example;
-
 import java.util.Scanner;
+import java.time.YearMonth;
 
 public class LeapYear {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         System.out.print("Nhập ngày: ");
-        int day = scanner.nextInt();
+        int day = sc.nextInt();
 
         System.out.print("Nhập tháng: ");
-        int month = scanner.nextInt();
+        int month = sc.nextInt();
 
         System.out.print("Nhập năm: ");
-        int year = scanner.nextInt();
+        int year = sc.nextInt();
 
-        if (isValidDate(day, month, year)) {
-            System.out.println("Ngày bạn nhập: " + day + "/" + month + "/" + year);
-            if (isLeapYear(year)) {
-                System.out.println(year + " là năm nhuận.");
-            } else {
-                System.out.println(year + " không phải là năm nhuận.");
-            }
-        } else {
-            System.out.println("Ngày tháng năm không hợp lệ.");
+        boolean isValid = true;
+
+        if (year > 10000 || year < 1000){
+            System.out.println("Năm nhập phải lớn hơn 1000 và nhỏ hơn 10000!");
+            isValid = false;
         }
-        scanner.close();
+
+        if(month< 1||month >12)
+
+        {
+            System.out.println("Tháng không hợp lệ!");
+            isValid = false;
+        }
+
+        if(day< 1)
+
+        {
+            System.out.println("Ngày không thể nhỏ hơn 1");
+            isValid = false;
+        }
+
+        if(isValid)
+
+        {
+            YearMonth monthInYear = YearMonth.of(year, month);
+            int daysInMonth = monthInYear.lengthOfMonth();
+
+            if (day > daysInMonth) {
+                System.out.println("Ngày nhập vượt quá số ngày trong tháng");
+                isValid = false;
+            }
+        }
+
+        if(isValid)
+
+        {
+            System.out.println("Ngày tháng năm bạn nhập vào hợp lệ!!!");
+        } else
+
+        {
+            System.out.println("Ngày tháng năm bạn nhập vào không hợp lệ!!!");
+        }
+
+        sc.close();
     }
 
-    public static boolean isLeapYear(int year) {
-        // Năm nhuận là năm chia hết cho 4, nhưng không chia hết cho 100,
-        // trừ khi năm đó cũng chia hết cho 400.
-        if (year % 4 == 0) {
-            if (year % 100 == 0) {
-                if (year % 400 == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
 
     public static boolean isValidDate(int day, int month, int year) {
-        // Kiểm tra tháng hợp lệ
+        if (year > 10000 || year < 1000) {
+            return false;
+        }
+
         if (month < 1 || month > 12) {
             return false;
         }
 
-        // Kiểm tra ngày hợp lệ cho từng tháng
-        int[] daysInMonth = {31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        if (day < 1 || day > daysInMonth[month - 1]) {
+        if (day < 1) {
             return false;
         }
 
-        // Kiểm tra năm hợp lệ
-        if (year < 1) {
-            return false;
-        }
+        YearMonth monthInYear = YearMonth.of(year, month);
+        int daysInMonth = monthInYear.lengthOfMonth();
 
-        return true;
+        return day <= daysInMonth;
     }
 }
-

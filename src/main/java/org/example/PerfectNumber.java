@@ -1,13 +1,19 @@
 package org.example;
-
 import java.util.Scanner;
+
 
 public class PerfectNumber {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Nhập số cần kiểmz tra: ");
+        System.out.print("Nhập số cần kiểm tra: ");
         int number = scanner.nextInt();
+
+        if (number < 2 || number > 10000) {
+            System.out.println("Số nhập phải lớn hơn 1 và nhỏ hơn 10000!");
+            System.out.println(number + "Số nhập không hợp lệ.");
+            System.exit(0);
+        }
 
         if (isPerfectNumber(number)) {
             System.out.println(number + " là số hoàn hảo.");
@@ -33,4 +39,3 @@ public class PerfectNumber {
         return sum == number;
     }
 }
-
