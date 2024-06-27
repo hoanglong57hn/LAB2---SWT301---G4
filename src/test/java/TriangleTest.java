@@ -7,6 +7,7 @@ public class TriangleTest {
     public void testIsValidTriangle() {
         assertTrue(Triangle.isValidTriangle(3, 4, 5));
         assertFalse(Triangle.isValidTriangle(1, 2, 6));
+        assertEquals(Triangle.isValidTriangle("a","b","c"));
     }
 
     @Test
