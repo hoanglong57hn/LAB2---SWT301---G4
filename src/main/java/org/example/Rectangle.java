@@ -8,14 +8,15 @@ public class Rectangle {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+
         double length, width;
 
         // Yêu cầu người dùng nhập chiều dài và chiều rộng
         do {
             System.out.print("Nhập chiều dài của hình chữ nhật: ");
-            length = scanner.nextDouble();
+            length = getValidPositiveDouble(scanner);
             System.out.print("Nhập chiều rộng của hình chữ nhật: ");
-            width = scanner.nextDouble();
+            width = getValidPositiveDouble(scanner);
 
             // Kiểm tra điều kiện chiều rộng phải nhỏ hơn chiều dài
             if (width >= length) {
@@ -41,6 +42,24 @@ public class Rectangle {
     }
     public static double CalculatePerimeter(double a, double b){
         return 2*(a+b);
+    }
+    public static double getValidPositiveDouble(Scanner scanner) {
+        double value = 0;
+        boolean isValid = false;
+        while (!isValid) {
+            if (scanner.hasNextDouble()) {
+                value = scanner.nextDouble();
+                if (value > 0) {
+                    isValid = true;
+                } else {
+                    System.out.print("Lỗi: Vui lòng nhập một số dương. Nhập lại: ");
+                }
+            } else {
+                System.out.print("Lỗi: Vui lòng nhập một số hợp lệ. Nhập lại: ");
+                scanner.next(); // Loại bỏ giá trị không hợp lệ khỏi input stream
+            }
+        }
+        return value;
     }
 }
 

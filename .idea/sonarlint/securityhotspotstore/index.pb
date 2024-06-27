@@ -25,5 +25,4 @@ P
  src/test/java/RectangleTest.java,a\d\ad7837c63f53c2028c46dbc9e41f888c8a3808b0
 O
 src/test/java/TriangleTest.java,8\6\868b12c4c5395e0e46e5bae267ff3b6a813856a3
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+
