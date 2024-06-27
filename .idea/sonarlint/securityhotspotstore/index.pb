@@ -37,3 +37,7 @@ O
 src/test/java/TriangleTest.java,8\6\868b12c4c5395e0e46e5bae267ff3b6a813856a3
 L
 src/test/java/Rectangle.java,7\f\7f031b3251efb27f5766fdd1e965c838c0c1bba6
+L
+src/test/java/Trapezoid.java,f\5\f5ce770bbfa27c574c7678f043627bf26ace32e4
+P
+ src/test/java/TrapezoidTest.java,d\6\d698277c1f3885413af14209877a4388e0604756

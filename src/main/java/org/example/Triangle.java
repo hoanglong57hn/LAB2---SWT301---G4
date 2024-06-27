@@ -3,7 +3,29 @@ package org.example;
 import java.util.Scanner;
 
 public class Triangle {
-    public static boolean isValidTriangle(double a, double b, double c) {
+
+    public static double getValidInput(Scanner scanner) {
+        double value = 0;
+        boolean validInput = false;
+        while (!validInput) {
+            if (!scanner.hasNextDouble()) {
+                System.out.println("Bạn phải nhập một số. Vui lòng thử lại.");
+                System.out.print("Nhập độ dài cạnh a của tam giác: ");
+                scanner.next(); // Đọc và loại bỏ giá trị không hợp lệ khỏi input stream
+            } else {
+                value = scanner.nextDouble();
+                if (value <= 0) {
+                    System.out.println("Bạn phải nhập một số lớn hơn 0. Vui lòng thử lại.");
+                    System.out.print("Nhập độ dài cạnh a của tam giác: ");
+                } else {
+                    validInput = true;
+                }
+            }
+        }
+        return value;
+    }
+
+    public static boolean isTriangle(double a, double b, double c) {
         return (a + b > c && a + c > b && b + c > a);
     }
 
@@ -22,23 +44,24 @@ public class Triangle {
 
         do {
             System.out.print("Nhập độ dài cạnh a của tam giác: ");
-            sideA = scanner.nextDouble();
-            System.out.print("Nhập độ dài cạnh b của tam giác: ");
-            sideB = scanner.nextDouble();
-            System.out.print("Nhập độ dài cạnh c của tam giác: ");
-            sideC = scanner.nextDouble();
+            sideA = getValidInput(scanner);
 
-            if (!isValidTriangle(sideA, sideB, sideC)) {
+            System.out.print("Nhập độ dài cạnh b của tam giác: ");
+            sideB = getValidInput(scanner);
+
+            System.out.print("Nhập độ dài cạnh c của tam giác: ");
+            sideC = getValidInput(scanner);
+
+            if (!isTriangle(sideA, sideB, sideC)) {
                 System.out.println("Ba cạnh nhập vào không tạo thành tam giác hợp lệ. Vui lòng nhập lại.");
             }
-        } while (!isValidTriangle(sideA, sideB, sideC));
+        } while (!isTriangle(sideA, sideB, sideC));
 
         double perimeter = calculatePerimeter(sideA, sideB, sideC);
-
         double area = calculateArea(sideA, sideB, sideC);
 
-        System.out.println("Chu vi của tam giác là: " + perimeter+"m");
-        System.out.println("Diện tích của tam giác là: " + area+"m2");
+        System.out.println("Chu vi của tam giác là: " + perimeter + "m");
+        System.out.println("Diện tích của tam giác là: " + area + "m2");
 
         // Đóng Scanner sau khi sử dụng
         scanner.close();
