@@ -19,8 +19,8 @@ public class Trapezoid {
             if (isTrapezoid(AB, CD, h)) {
                 double area = calculateArea(AB, CD, h);
                 double perimeter = calculatePerimeter(AB, CD, h);
-                System.out.println("Diện tích của hình thang là: " + area+"m2");
-                System.out.println("Chu vi của hình thang là: " + perimeter+"m");
+                System.out.println("Diện tích của hình thang là: " + area);
+                System.out.println("Chu vi của hình thang là: " + perimeter);
             } else {
                 System.out.println("Ba giá trị này không tạo thành hình thang! (AB != CD and h > 0)");
             }
@@ -43,6 +43,7 @@ public class Trapezoid {
     // Phương thức tính chu vi của hình thang
     public static double calculatePerimeter(double AB, double CD, double h) {
         // Chu vi của hình thang là tổng độ dài các cạnh
-        return AB + CD + 2 * Math.abs(Math.sqrt(Math.pow((AB - CD) / 2, 2)) + Math.pow(h, 2));
+        double side = Math.sqrt(Math.pow((CD - AB) / 2, 2) + Math.pow(h, 2));
+        return AB + CD + 2 * side;
     }
 }
